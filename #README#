@@ -1,0 +1,10 @@
+Name: Samantha Krieger
+Student number: 53861092
+
+I copied a lot of the socket code from the reference we were given in the assignment outline.
+Donahoo and Calvert from their book TCP/IP Sockets in C (http://cs.baylor.edu/~donahoo/practical/CSockets).
+
+The remaining code is all mine. 
+
+For others' reference, what the code does:
+

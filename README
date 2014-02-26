@@ -5,3 +5,38 @@ I copied a lot of the socket code from the reference we were given in the assign
 Donahoo and Calvert from their book TCP/IP Sockets in C (http://cs.baylor.edu/~donahoo/practical/CSockets).
 
 The remaining code is all mine. 
+
+------------------------------------------------------------------------------
+BACKGROUND TO THE ASSIGNMENT
+------------------------------------------------------------------------------
+
+The purpose of this assignment is to create a simple multi-threaded server. 
+The server needs to be written in C using Pthreads. The server should be 
+called "mtserver", and it should take two parameters: 
+(a) the maximum number of clients (N) that can connect, and 
+(b) the server port number.
+
+Details 
+The main server thread does the following: 
+1. Create a listening socket 
+2. Perpetually look, doing the following: 
+	a. Accept a new connection from a client 
+	b. If the current number of connections is greater than N, immediately terminate 	the connection; else, start a new child 
+	thread to respond to queries. 
+
+A child thread should do the following: 
+1. Read data from the new connection. 
+2. Process the request. There are four types of requests: 
+	a. "uptime", returns the integer
+	b. "load", returns the integer value of the current number of clients; 
+	c. an arbitrary number of digits, which the server sums up and 
+	returns; and 
+	d. "exit", returns value 0 and goes to Step 4 below. 
+	Notice that all returned values are 4 byte integers. 
+	e. Anything other than these four types of requests is 
+	considered invalid, and a -1 is returned. You should drop the 
+	client when it makes more than two consecutive invalid 
+	requests. 
+3. Return to 1, looking for another request. 
+4. Close the connection to the client and terminate the child 
+process.
